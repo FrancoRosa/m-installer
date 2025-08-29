@@ -1,8 +1,9 @@
+
 # colors
-red='\e[1;31m'
-grn='\e[1;32m' 
-org='\e[1;93m' 
-rst='\e[0m'
+red="\033[1;31m"
+grn="\033[1;32m" 
+org="\033[1;93m" 
+rst="\033[0m"
     
 #banner
 echo "${grn}       
@@ -46,6 +47,16 @@ install_dependency "curl" "sudo apt install -y curl"
 install_dependency "node" "sudo apt install nodejs -y" "curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - "
 install_dependency "pm2" "sudo npm i -g pm2"
 install_dependency "tailscale" "curl -fsSL https://tailscale.com/install.sh | sh"
+
+install_dependency "anydesk" "sudo apt install anydesk" \
+"sudo apt install ca-certificates curl apt-transport-https && \
+sudo install -m 0755 -d /etc/apt/keyrings  && \
+sudo curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY -o /etc/apt/keyrings/keys.anydesk.com.asc && \
+sudo chmod a+r /etc/apt/keyrings/keys.anydesk.com.asc && \
+echo 'deb [signed-by=/etc/apt/keyrings/keys.anydesk.com.asc] https://deb.anydesk.com all main' | sudo tee /etc/apt/sources.list.d/anydesk-stable.list > /dev/null && \
+sudo apt update" 
+
+
 sudo pm2 startup
 mkdir ~/signals
 
